@@ -6,6 +6,10 @@
 
 {% block content %}
 
-<p>Home page.</p>
+{% if num_cities==1 %}
+{{ num_cities }} city saved.
+{% else %}
+{{ num_cities }} cities saved.
+{% endif %}
 
 {% endblock %}
