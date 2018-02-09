@@ -15,7 +15,7 @@ app.debug = True
 app.use_reloader = True
 
 app.config['SECRET_KEY'] = 'hardtoguessstring'
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://localhost/weatherdb" # TODO: May need to change this, Windows users. Everyone will need to have created a db with exactly this name.
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:19900241@localhost:5432/weatherdb" # TODO: May need to change this, Windows users. Everyone will need to have created a db with exactly this name.
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -47,10 +47,15 @@ def index():
 def enter_info():
     form = CityForm()
     if form.validate_on_submit():
-        return "hello world" # replace this with code to save the form data in the database
+        # replace this with code to save the form data in the database
         ## COMMENTS TO TRANSLATE:
         # Get the form data in variables
-
+        cityname = form.name.data
+        temp = form.temp.data
+        city = City(name = cityname, temp_fah = temp)
+        db.session.add(city)
+        db.session.commit()
+        return redirect(url_for('index'))
         # Create a City object with the correct data populated
 
         # Add the city object to the db.session
