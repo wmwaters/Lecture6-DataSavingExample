@@ -1,0 +1,11 @@
+<ul>
+    <li><a href="{{ url_for('index') }}">Home</a></li>
+    <li><a href="{{ url_for('cities_and_temps') }}">Cities and their temperatures as seen</a></li>
+    <li><a href="{{ url_for('enter_info') }}">Enter a new city and temperature</a></li>
+</ul>
+
+{% block content %}
+
+<p>Home page.</p>
+
+{% endblock %}
